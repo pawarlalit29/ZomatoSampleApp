@@ -7,9 +7,9 @@ import com.google.gson.annotations.SerializedName;
 
 public class Restaurant_ {
 
-    @SerializedName("R")
+    @SerializedName("R_Data")
     @Expose
-    private R r;
+    private R_Data r;
     @SerializedName("apikey")
     @Expose
     private String apikey;
@@ -107,11 +107,11 @@ public class Restaurant_ {
     @Expose
     private List<Object> establishmentTypes = null;
 
-    public R getR() {
+    public R_Data getR() {
         return r;
     }
 
-    public void setR(R r) {
+    public void setR(R_Data r) {
         this.r = r;
     }
 
