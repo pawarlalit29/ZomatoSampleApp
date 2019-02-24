@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:custom="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/lv_header_search"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center_horizontal|top"
+    android:padding="@dimen/card_margin_10"
+    android:clickable="true"
+    android:gravity="center"
+    android:orientation="horizontal">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/text_size_micro"
+            android:textColor="@color/myTextSecondaryColor"
+            android:maxLines="1"
+            android:textAllCaps="true"
+            android:text="@string/your_location"/>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="18dp"
+                android:layout_height="18dp"
+                android:src="@drawable/ic_location_on_green_500_18dp"/>
+
+            <TextView
+                android:id="@+id/txt_location"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textSize="@dimen/text_size_medium"
+                android:textColor="@color/colorAccent"
+                android:maxLines="1"
+                android:layout_marginLeft="@dimen/card_margin_side"
+                android:textStyle="bold"
+                android:text="Mumbai"/>
+
+            <TextView
+                android:id="@+id/txt_change"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/text_size_small"
+                android:textColor="@color/green_500"
+                android:maxLines="1"
+                android:textAllCaps="true"
+                android:text="@string/change"/>
+        </LinearLayout>
+
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="@dimen/card_margin_side"
+                android:layout_weight="1">
+
+                <android.support.v7.widget.AppCompatEditText
+                    android:id="@+id/edt_search"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:background="@drawable/custom_round_bg_grey"
+                    android:drawableLeft="@drawable/ic_search_grey_500_18dp"
+                    android:drawablePadding="@dimen/card_margin_side"
+                    android:focusableInTouchMode="true"
+                    android:hint="@string/search_for_restaurant_name"
+                    android:imeOptions="actionSearch"
+                    android:padding="@dimen/card_margin_side"
+                    android:singleLine="true"
+                    android:textColor="@color/myTextPrimaryColor" />
+
+                <ImageView
+                    android:id="@+id/btn_cancel_searchBar"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginRight="@dimen/card_margin_10"
+                    android:background="@color/grey_200"
+                    android:src="@drawable/ic_circle_close_grey_18dp"
+                    android:visibility="gone" />
+            </RelativeLayout>
+
+    </LinearLayout>
+
+</LinearLayout>

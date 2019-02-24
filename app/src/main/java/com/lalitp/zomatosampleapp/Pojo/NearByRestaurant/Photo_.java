@@ -14,19 +14,19 @@ public class Photo_ {
     private String thumbUrl;
     @SerializedName("order")
     @Expose
-    private Integer order;
+    private String order;
     @SerializedName("md5sum")
     @Expose
     private String md5sum;
     @SerializedName("id")
     @Expose
-    private Integer id;
+    private String id;
     @SerializedName("photo_id")
     @Expose
-    private Integer photoId;
+    private String photoId;
     @SerializedName("uuid")
     @Expose
-    private Integer uuid;
+    private String uuid;
     @SerializedName("type")
     @Expose
     private String type;
@@ -47,11 +47,11 @@ public class Photo_ {
         this.thumbUrl = thumbUrl;
     }
 
-    public Integer getOrder() {
+    public String getOrder() {
         return order;
     }
 
-    public void setOrder(Integer order) {
+    public void setOrder(String order) {
         this.order = order;
     }
 
@@ -63,27 +63,27 @@ public class Photo_ {
         this.md5sum = md5sum;
     }
 
-    public Integer getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(String id) {
         this.id = id;
     }
 
-    public Integer getPhotoId() {
+    public String getPhotoId() {
         return photoId;
     }
 
-    public void setPhotoId(Integer photoId) {
+    public void setPhotoId(String photoId) {
         this.photoId = photoId;
     }
 
-    public Integer getUuid() {
+    public String getUuid() {
         return uuid;
     }
 
-    public void setUuid(Integer uuid) {
+    public void setUuid(String uuid) {
         this.uuid = uuid;
     }
 
@@ -94,5 +94,4 @@ public class Photo_ {
     public void setType(String type) {
         this.type = type;
     }
-
 }
