@@ -28,7 +28,8 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.util.Base64;
 
-import com.lalitp.myapplication.LoginSampleApp;
+
+import com.lalitp.zomatosampleapp.ZomatoSampleApp;
 
 import java.io.UnsupportedEncodingException;
 import java.security.GeneralSecurityException;
@@ -85,7 +86,7 @@ public class SecurePreferences {
 
     public static SecurePreferences getSecurePreferences() {
         SecurePreferences preferences;
-        preferences = new SecurePreferences(LoginSampleApp.getAppContext(),
+        preferences = new SecurePreferences(ZomatoSampleApp.getAppContext(),
                 User_PREF_TAG, Secure_PREF_KEY, true);
         return preferences;
     }

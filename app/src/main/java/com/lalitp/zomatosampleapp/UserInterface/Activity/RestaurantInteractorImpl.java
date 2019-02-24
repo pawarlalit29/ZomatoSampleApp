@@ -40,6 +40,17 @@ public class RestaurantInteractorImpl implements RestaurantInteractor {
     private Map<String,String> getParam(RestaurantParam restaurantParam){
         HashMap<String,String> stringHashMap = new HashMap<>();
 
+        stringHashMap.put("user-key","4feaa2167c4dc6beadf629319423bd4b");
+        stringHashMap.put("entity_id","3");
+        stringHashMap.put("entity_type","city");
+        stringHashMap.put("start", String.valueOf(restaurantParam.getStart()));
+        stringHashMap.put("count", String.valueOf(restaurantParam.getCount()));
+
+        if(Common_Utils.isNotNullOrEmpty(restaurantParam.getQuery()))
+            stringHashMap.put("q",restaurantParam.getQuery());
+
+
+
         return stringHashMap;
     }
 

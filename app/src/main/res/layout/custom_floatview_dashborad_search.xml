@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:custom="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/lv_header_search"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center_horizontal|top"
+    android:padding="@dimen/card_margin_10"
+    android:clickable="true"
+    android:gravity="center"
+    android:orientation="horizontal">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/text_size_micro"
+            android:textColor="@color/myTextSecondaryColor"
+            android:maxLines="1"
+            android:textAllCaps="true"
+            android:text="@string/your_location"/>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="18dp"
+                android:layout_height="18dp"
+                android:src="@drawable/ic_location_on_green_500_18dp"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textSize="@dimen/text_size_medium"
+                android:textColor="@color/colorAccent"
+                android:maxLines="1"
+                android:layout_marginLeft="@dimen/card_margin_side"
+                android:textStyle="bold"
+                android:text="Mumbai"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/text_size_small"
+                android:textColor="@color/green_500"
+                android:maxLines="1"
+                android:textAllCaps="true"
+                android:text="@string/change"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:background="@drawable/custom_background"
+            android:layout_marginTop="@dimen/card_margin_side"
+            android:padding="@dimen/card_margin_10"
+            android:orientation="horizontal">
+
+
+            <ImageView
+                android:layout_width="18dp"
+                android:layout_height="18dp"
+                android:src="@drawable/ic_search_grey_500_18dp"/>
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/text_size_medium"
+                android:textColor="@color/colorAccent"
+                android:maxLines="1"
+                android:background="@drawable/custom_edittext_hideborder"
+                android:hint="@string/search_for_restaurant_name"/>
+
+        </LinearLayout>
+    </LinearLayout>
+
+</LinearLayout>

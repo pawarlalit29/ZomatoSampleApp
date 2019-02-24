@@ -4,4 +4,8 @@
     <string name="progressActivityEmptyContentPlaceholder">We couldn\'t find anything. Tap the button to take your first image.</string>
     <string name="progressActivityErrorTitlePlaceholder">No Internet Connection</string>
     <string name="progressActivityErrorContentPlaceholder">We are unable to establish a connection with our server. Please check your internet connection.</string>
+    <string name="progressActivityErrorButton">Try Again</string>
+    <string name="change">Change</string>
+    <string name="your_location">Your Location</string>
+    <string name="search_for_restaurant_name">Search for restaurant name</string>
 </resources>
