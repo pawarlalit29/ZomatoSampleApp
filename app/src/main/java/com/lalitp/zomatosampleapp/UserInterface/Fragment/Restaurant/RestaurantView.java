@@ -1,4 +1,4 @@
-package com.lalitp.zomatosampleapp.UserInterface.Activity.Restaurant;
+package com.lalitp.zomatosampleapp.UserInterface.Fragment.Restaurant;
 
 import com.lalitp.zomatosampleapp.Pojo.NearByRestaurant.Restaurant;
 import com.lalitp.zomatosampleapp.Pojo.RestaurantParam;

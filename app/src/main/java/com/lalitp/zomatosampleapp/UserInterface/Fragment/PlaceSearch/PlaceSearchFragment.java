@@ -1,8 +1,7 @@
-package com.lalitp.zomatosampleapp.UserInterface.Activity.PlaceSearch;
+package com.lalitp.zomatosampleapp.UserInterface.Fragment.PlaceSearch;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
-import android.content.Intent;
 import android.content.IntentSender;
 import android.location.Location;
 import android.os.Bundle;
@@ -16,8 +15,9 @@ import android.support.v7.widget.RecyclerView;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.Button;
+import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 
@@ -39,10 +39,10 @@ import com.google.android.gms.location.places.Place;
 import com.google.android.gms.location.places.PlaceBuffer;
 import com.google.android.gms.location.places.Places;
 import com.google.android.gms.maps.model.LatLng;
-import com.lalitp.zomatosampleapp.Pojo.PlaceSearch.PlaceSearchAddress;
 import com.lalitp.zomatosampleapp.Pojo.PlaceSearch.PlaceSearchParam;
 import com.lalitp.zomatosampleapp.Pojo.PlaceSearch.Prediction;
 import com.lalitp.zomatosampleapp.R;
+import com.lalitp.zomatosampleapp.UserInterface.Activity.MainActivity;
 import com.lalitp.zomatosampleapp.UserInterface.Adaptor.PlaceAutoCompleteAdapter;
 import com.lalitp.zomatosampleapp.Utils.AppConstant;
 import com.lalitp.zomatosampleapp.Utils.Common_Utils;
@@ -55,17 +55,15 @@ import java.util.TimerTask;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
-import permission.auron.com.marshmallowpermissionhelper.ActivityManagePermission;
+import permission.auron.com.marshmallowpermissionhelper.FragmentManagePermission;
 import permission.auron.com.marshmallowpermissionhelper.PermissionResult;
 import permission.auron.com.marshmallowpermissionhelper.PermissionUtils;
 
-public class PlaceSearchActivity extends ActivityManagePermission implements GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener, PlaceSearchView, PlaceAutoCompleteAdapter.ItemClickListner {
+public class PlaceSearchFragment extends FragmentManagePermission implements GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener, PlaceSearchView, PlaceAutoCompleteAdapter.ItemClickListner {
 
 
     @BindView(R.id.et_search_place)
     AppCompatEditText etSearchPlace;
-    @BindView(R.id.btn_cancel)
-    Button btnCancel;
     @BindView(R.id.btn_cancel_searchBar)
     ImageView btnCancelSearchBar;
     @BindView(R.id.rv_result)
@@ -74,7 +72,7 @@ public class PlaceSearchActivity extends ActivityManagePermission implements Goo
     ProgressBar progressBar;
 
     private Context context;
-    private static String TAG = PlaceSearchActivity.class.getSimpleName();
+    private static String TAG = PlaceSearchFragment.class.getSimpleName();
 
     private GoogleApiClient mGoogleApiClient;
     private Location mLastLocation;
@@ -94,27 +92,46 @@ public class PlaceSearchActivity extends ActivityManagePermission implements Goo
     private static final int REQUEST_CHECK_SETTINGS = 1000;
 
 
+    public static PlaceSearchFragment getInstance(){
+        PlaceSearchFragment placeSearchFragment = new PlaceSearchFragment();
+        return placeSearchFragment;
+    }
+
+    public PlaceSearchFragment() {
+    }
+
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_place_search);
-        context = this;
-        ButterKnife.bind(this);
-        init(getIntent().getExtras());
+        context = getActivity();
+            }
+
+    @Nullable
+    @Override
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        View view =inflater.inflate(R.layout.frag_place_search, container, false);
+        ButterKnife.bind(this, view);
+        return view;
+    }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        init();
     }
 
     //call default method to initialized variables
-    private void init(Bundle bundle) {
+    private void init() {
 
         placeAutoCompletes = new ArrayList<>();
         placeSearchPresenter = new PlaceSearchPresenterImpl(this);
 
-        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
+        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false);
         rvResult.setLayoutManager(layoutManager);
-        rvResult.addItemDecoration(new DividerItemDecoration(this, LinearLayoutManager.VERTICAL));
+        rvResult.addItemDecoration(new DividerItemDecoration(getActivity(), LinearLayoutManager.VERTICAL));
         rvResult.setItemAnimator(new DefaultItemAnimator());
 
-        placeAutoCompleteAdapter = new PlaceAutoCompleteAdapter(this, placeAutoCompletes);
+        placeAutoCompleteAdapter = new PlaceAutoCompleteAdapter(getActivity(), placeAutoCompletes);
         rvResult.setAdapter(placeAutoCompleteAdapter);
         placeAutoCompleteAdapter.setOnItemClickListener(this);
 
@@ -171,15 +188,14 @@ public class PlaceSearchActivity extends ActivityManagePermission implements Goo
                             Log.v("Latitude is", "" + queriedLocation.latitude);
                             Log.v("Longitude is", "" + queriedLocation.longitude);
 
-                            PlaceSearchAddress placeSearchAddress = new PlaceSearchAddress();
-                            placeSearchAddress.setName(myPlace.getName().toString());
-                            placeSearchAddress.setAddress(myPlace.getAddress().toString());
-                            placeSearchAddress.setLatLng(myPlace.getLatLng());
+                            com.lalitp.zomatosampleapp.Pojo.PlaceLocation.Location location = new com.lalitp.zomatosampleapp.Pojo.PlaceLocation.Location();
 
-                            Intent intent = new Intent();
-                            //intent.putExtra(AppConstant.SEARCH_ADDRESS, placeSearchAddress);
-                            setResult(RESULT_OK, intent);
-                            finish();
+                            location.setLatitude(String.valueOf(myPlace.getLatLng().latitude));
+                            location.setLongitude(String.valueOf(myPlace.getLatLng().longitude));
+                            location.setTitle(myPlace.getAddress().toString());
+
+                            ((MainActivity)getActivity()).setStoreLocation(location);
+
                         }
                         places.release();
 
@@ -187,20 +203,11 @@ public class PlaceSearchActivity extends ActivityManagePermission implements Goo
                 });
     }
 
-    @OnClick(R.id.btn_cancel)
-    public void onCancelBtnClick() {
-        finish();
-    }
 
     @OnClick(R.id.btn_cancel_searchBar)
     public void onCancelBtnSearchbarClick() {
         etSearchPlace.setText(null);
         clearResult();
-    }
-
-    @OnClick(R.id.et_search_place)
-    public void onEtSearchClick() {
-        btnCancel.setVisibility(View.VISIBLE);
     }
 
     public void fetchLocation() {
@@ -214,7 +221,7 @@ public class PlaceSearchActivity extends ActivityManagePermission implements Goo
 
     // initialized google api clint
     protected synchronized void buildGoogleApiClient() {
-        mGoogleApiClient = new GoogleApiClient.Builder(this)
+        mGoogleApiClient = new GoogleApiClient.Builder(getActivity())
                 .addConnectionCallbacks(this)
                 .addOnConnectionFailedListener(this)
                 .addApi(LocationServices.API)
@@ -222,7 +229,7 @@ public class PlaceSearchActivity extends ActivityManagePermission implements Goo
                 .addApi(Places.PLACE_DETECTION_API)
                 .build();
 
-        mFusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
+        mFusedLocationClient = LocationServices.getFusedLocationProviderClient(getActivity());
     }
 
 
@@ -245,6 +252,10 @@ public class PlaceSearchActivity extends ActivityManagePermission implements Goo
     @Override
     public void locationDetail(com.lalitp.zomatosampleapp.Pojo.PlaceLocation.Location location) {
 
+        if(location!=null){
+            ((MainActivity)getActivity()).setStoreLocation(location);
+        }
+
     }
 
     @Override
@@ -264,7 +275,7 @@ public class PlaceSearchActivity extends ActivityManagePermission implements Goo
                     public void run() {
                         // TODO: do what you need here (refresh list)
                         // you will probably need to use runOnUiThread(Runnable action) for some specific actions
-                        runOnUiThread(new Runnable() {
+                        getActivity().runOnUiThread(new Runnable() {
                             @Override
                             public void run() {
                                 placeAutoCompleteAdapter.setSearchQuery(query);

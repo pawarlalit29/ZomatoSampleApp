@@ -1,7 +1,5 @@
-package com.lalitp.zomatosampleapp.UserInterface.Activity.PlaceSearch;
+package com.lalitp.zomatosampleapp.UserInterface.Fragment.PlaceSearch;
 
-
-import android.location.Location;
 
 import com.google.android.gms.maps.model.LatLng;
 import com.lalitp.zomatosampleapp.Pojo.PlaceLocation.PlaceLocationData;
@@ -15,9 +13,6 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-/**
- * Created by atulsia on 15/12/16.
- */
 
 public class PlaceSearchInteractorImpl implements PlaceSearchInteractor {
 

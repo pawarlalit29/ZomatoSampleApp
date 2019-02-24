@@ -1,37 +1,46 @@
-package com.lalitp.zomatosampleapp.UserInterface.Activity.Restaurant;
+package com.lalitp.zomatosampleapp.UserInterface.Fragment.Restaurant;
 
-import android.content.Intent;
+import android.content.Context;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
+import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.lalitp.zomatosampleapp.Pojo.NearByRestaurant.Restaurant;
+import com.lalitp.zomatosampleapp.Pojo.PlaceLocation.Location;
 import com.lalitp.zomatosampleapp.Pojo.RestaurantParam;
 import com.lalitp.zomatosampleapp.R;
-import com.lalitp.zomatosampleapp.UserInterface.Activity.PlaceSearch.PlaceSearchActivity;
+import com.lalitp.zomatosampleapp.UserInterface.Activity.MainActivity;
+import com.lalitp.zomatosampleapp.UserInterface.Fragment.PlaceSearch.PlaceSearchFragment;
 import com.lalitp.zomatosampleapp.UserInterface.Adaptor.RestaurantListAdapter;
 import com.lalitp.zomatosampleapp.UserInterface.Widget.EmptyView.ProgressLinearLayout;
 import com.lalitp.zomatosampleapp.UserInterface.Widget.EndlessRecyclerViewScrollListener;
 import com.lalitp.zomatosampleapp.Utils.AppConstant;
+import com.lalitp.zomatosampleapp.Utils.Common_Utils;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
 
+import butterknife.BindColor;
 import butterknife.BindString;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public class RestaurantActivity extends AppCompatActivity implements RestaurantView, SwipeRefreshLayout.OnRefreshListener {
+public class RestaurantFragment extends Fragment implements RestaurantView, SwipeRefreshLayout.OnRefreshListener {
 
     @BindView(R.id.simpleGrid)
     RecyclerView simpleGrid;
@@ -45,6 +54,10 @@ public class RestaurantActivity extends AppCompatActivity implements RestaurantV
     EditText edtSearch;
     @BindView(R.id.btn_cancel_searchBar)
     ImageView btnCancelSearchBar;
+    @BindColor(R.color.white)
+    int colorWhite;
+    @BindView(R.id.txt_location)
+    TextView txtLocation;
 
     private List<Restaurant> restaurantList;
     private RestaurantListAdapter restaurantListAdapter;
@@ -54,13 +67,42 @@ public class RestaurantActivity extends AppCompatActivity implements RestaurantV
     private final long DELAY = 500; // milliseconds
     private Timer timer = new Timer();
     private String searchQuery;
+    private Context context;
+    private double lat = 0.0, lon = 0.0;
+
+    public static RestaurantFragment getInstance() {
+        RestaurantFragment restaurantFragment = new RestaurantFragment();
+        return restaurantFragment;
+    }
+
+    public RestaurantFragment() {
+    }
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_restaurant);
-        ButterKnife.bind(this);
+        context = getActivity();
+    }
+
+    @Nullable
+    @Override
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        View view = inflater.inflate(R.layout.frag_restaurant, container, false);
+        ButterKnife.bind(this, view);
+        return view;
+    }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
         init();
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        setDefaultLocation();
+
     }
 
     private void init() {
@@ -82,7 +124,7 @@ public class RestaurantActivity extends AppCompatActivity implements RestaurantV
             }
         });
 
-        restaurantFetchCall(AppConstant.FROM_ONCREATE);
+        setDefaultLocation();
 
         edtSearch.addTextChangedListener(new TextWatcher() {
             @Override
@@ -109,10 +151,21 @@ public class RestaurantActivity extends AppCompatActivity implements RestaurantV
 
     }
 
+    private void setDefaultLocation() {
+        Location location = ((MainActivity) getActivity()).getStoreLocation();
+
+        if (location != null && txtLocation != null) {
+            if (Common_Utils.isNotNullOrEmpty(location.getTitle()))
+                txtLocation.setText(location.getTitle());
+            lat = Double.parseDouble(Common_Utils.isNotNullOrEmpty(location.getLatitude()) ? location.getLatitude() : "0.0");
+            lon = Double.parseDouble(Common_Utils.isNotNullOrEmpty(location.getLongitude()) ? location.getLongitude() : "0.0");
+        }
+        restaurantFetchCall(AppConstant.FROM_ONCREATE);
+    }
+
     @OnClick(R.id.txt_change)
-    public void onClickChangeLocation(){
-        Intent intent = new Intent(this, PlaceSearchActivity.class);
-        startActivity(intent);
+    public void onClickChangeLocation() {
+        ((MainActivity) getActivity()).setFrameLayout(PlaceSearchFragment.getInstance());
     }
 
     @OnClick(R.id.btn_cancel_searchBar)
@@ -172,6 +225,8 @@ public class RestaurantActivity extends AppCompatActivity implements RestaurantV
         restaurantParam.setQuery(searchQuery);
         restaurantParam.setStart(offset);
         restaurantParam.setCount(limit);
+        restaurantParam.setLatitude(lat);
+        restaurantParam.setLongitude(lon);
 
         restaurantPresenter.getRestaurantList(restaurantParam);
     }
@@ -201,7 +256,7 @@ public class RestaurantActivity extends AppCompatActivity implements RestaurantV
                     public void run() {
                         // TODO: do what you need here (refresh list)
                         // you will probably need to use runOnUiThread(Runnable action) for some specific actions
-                        runOnUiThread(new Runnable() {
+                        getActivity().runOnUiThread(new Runnable() {
                             @Override
                             public void run() {
                                 searchQuery = newQuery;

@@ -5,9 +5,6 @@ import android.os.Parcelable;
 
 import com.google.android.gms.maps.model.LatLng;
 
-/**
- * Created by atulsia on 30/1/18.
- */
 
 public class PlaceSearchAddress implements Parcelable {
     private LatLng latLng;

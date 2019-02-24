@@ -1,4 +1,4 @@
-package com.lalitp.zomatosampleapp.UserInterface.Activity.Restaurant;
+package com.lalitp.zomatosampleapp.UserInterface.Fragment.Restaurant;
 
 import com.lalitp.zomatosampleapp.Pojo.NearByRestaurant.NearByRestaurantData;
 import com.lalitp.zomatosampleapp.Pojo.RestaurantParam;
@@ -51,8 +51,16 @@ public class RestaurantInteractorImpl implements RestaurantInteractor {
     private Map<String, String> getParam(RestaurantParam restaurantParam) {
         HashMap<String, String> stringHashMap = new HashMap<>();
 
-        stringHashMap.put("entity_id", "3");
-        stringHashMap.put("entity_type", "city");
+        if(restaurantParam.getLatitude()==0.0 &&
+        restaurantParam.getLongitude() == 0.0){
+            stringHashMap.put("entity_id", "3");
+            stringHashMap.put("entity_type", "city");
+        }else {
+            stringHashMap.put("lat", String.valueOf(restaurantParam.getLatitude()));
+            stringHashMap.put("lon", String.valueOf(restaurantParam.getLongitude()));
+            stringHashMap.put("radius", "5000");
+        }
+
 
 
         if (Common_Utils.isNotNullOrEmpty(restaurantParam.getQuery()))
