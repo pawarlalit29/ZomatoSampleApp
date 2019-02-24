@@ -1,17 +1,15 @@
-package com.lalitp.zomatosampleapp.UserInterface.Activity;
+package com.lalitp.zomatosampleapp.UserInterface.Activity.Restaurant;
 
 import com.lalitp.zomatosampleapp.Pojo.NearByRestaurant.Restaurant;
+import com.lalitp.zomatosampleapp.Pojo.RestaurantParam;
 
 import java.util.List;
 
-/**
- * Created by atulsia on 13/1/17.
- */
+
 
 public interface RestaurantView {
     void showProgress();
-    void getRestaurantData(List<Restaurant> restaurants);
+    void getRestaurantData(List<Restaurant> restaurants, RestaurantParam restaurantParam);
     void showError(String msg);
-    void showSuccess(String msg);
     void showInternetError();
 }

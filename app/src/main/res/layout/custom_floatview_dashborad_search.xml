@@ -74,14 +74,17 @@
             <ImageView
                 android:layout_width="18dp"
                 android:layout_height="18dp"
+                android:background="@color/grey_300"
                 android:src="@drawable/ic_search_grey_500_18dp"/>
 
             <EditText
+                android:id="@+id/edt_search"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textSize="@dimen/text_size_medium"
-                android:textColor="@color/colorAccent"
+                android:textColor="@color/myTextPrimaryColor"
                 android:maxLines="1"
+                android:layout_marginLeft="@dimen/card_margin_side"
                 android:background="@drawable/custom_edittext_hideborder"
                 android:hint="@string/search_for_restaurant_name"/>
 

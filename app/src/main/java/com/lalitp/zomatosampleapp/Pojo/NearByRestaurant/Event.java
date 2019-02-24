@@ -9,7 +9,7 @@ public class Event {
 
     @SerializedName("event_id")
     @Expose
-    private Integer eventId;
+    private String eventId;
     @SerializedName("friendly_start_date")
     @Expose
     private String friendlyStartDate;
@@ -33,7 +33,7 @@ public class Event {
     private String startTime;
     @SerializedName("is_active")
     @Expose
-    private Integer isActive;
+    private String isActive;
     @SerializedName("date_added")
     @Expose
     private String dateAdded;
@@ -45,13 +45,13 @@ public class Event {
     private List<Object> restaurants = null;
     @SerializedName("is_valid")
     @Expose
-    private Integer isValid;
+    private String isValid;
     @SerializedName("share_url")
     @Expose
     private String shareUrl;
     @SerializedName("show_share_url")
     @Expose
-    private Integer showShareUrl;
+    private String showShareUrl;
     @SerializedName("title")
     @Expose
     private String title;
@@ -66,13 +66,13 @@ public class Event {
     private String displayDate;
     @SerializedName("is_end_time_set")
     @Expose
-    private Integer isEndTimeSet;
+    private String isEndTimeSet;
     @SerializedName("disclaimer")
     @Expose
     private String disclaimer;
     @SerializedName("event_category")
     @Expose
-    private Integer eventCategory;
+    private String eventCategory;
     @SerializedName("event_category_name")
     @Expose
     private String eventCategoryName;
@@ -86,11 +86,11 @@ public class Event {
     @Expose
     private ShareData shareData;
 
-    public Integer getEventId() {
+    public String getEventId() {
         return eventId;
     }
 
-    public void setEventId(Integer eventId) {
+    public void setEventId(String eventId) {
         this.eventId = eventId;
     }
 
@@ -150,11 +150,11 @@ public class Event {
         this.startTime = startTime;
     }
 
-    public Integer getIsActive() {
+    public String getIsActive() {
         return isActive;
     }
 
-    public void setIsActive(Integer isActive) {
+    public void setIsActive(String isActive) {
         this.isActive = isActive;
     }
 
@@ -182,11 +182,11 @@ public class Event {
         this.restaurants = restaurants;
     }
 
-    public Integer getIsValid() {
+    public String getIsValid() {
         return isValid;
     }
 
-    public void setIsValid(Integer isValid) {
+    public void setIsValid(String isValid) {
         this.isValid = isValid;
     }
 
@@ -198,11 +198,11 @@ public class Event {
         this.shareUrl = shareUrl;
     }
 
-    public Integer getShowShareUrl() {
+    public String getShowShareUrl() {
         return showShareUrl;
     }
 
-    public void setShowShareUrl(Integer showShareUrl) {
+    public void setShowShareUrl(String showShareUrl) {
         this.showShareUrl = showShareUrl;
     }
 
@@ -238,11 +238,11 @@ public class Event {
         this.displayDate = displayDate;
     }
 
-    public Integer getIsEndTimeSet() {
+    public String getIsEndTimeSet() {
         return isEndTimeSet;
     }
 
-    public void setIsEndTimeSet(Integer isEndTimeSet) {
+    public void setIsEndTimeSet(String isEndTimeSet) {
         this.isEndTimeSet = isEndTimeSet;
     }
 
@@ -254,11 +254,11 @@ public class Event {
         this.disclaimer = disclaimer;
     }
 
-    public Integer getEventCategory() {
+    public String getEventCategory() {
         return eventCategory;
     }
 
-    public void setEventCategory(Integer eventCategory) {
+    public void setEventCategory(String eventCategory) {
         this.eventCategory = eventCategory;
     }
 
@@ -293,5 +293,4 @@ public class Event {
     public void setShareData(ShareData shareData) {
         this.shareData = shareData;
     }
-
 }

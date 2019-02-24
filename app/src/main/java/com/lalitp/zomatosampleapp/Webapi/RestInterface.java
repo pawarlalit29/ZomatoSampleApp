@@ -2,23 +2,27 @@ package com.lalitp.zomatosampleapp.Webapi;
 
 
 import com.lalitp.zomatosampleapp.Pojo.NearByRestaurant.NearByRestaurantData;
+import com.lalitp.zomatosampleapp.Pojo.PlaceSearch.PlaceSearchData;
 
+
+import java.util.HashMap;
 import java.util.Map;
 
+import dimitrovskif.smartcache.SmartCall;
 import retrofit2.Call;
 import retrofit2.http.GET;
 import retrofit2.http.HeaderMap;
+import retrofit2.http.Headers;
 import retrofit2.http.POST;
+import retrofit2.http.QueryMap;
 
 
-/**
- * Created by atulsia on 19/2/16.
- */
 public interface RestInterface {
 
-
+    @Headers("user-key:4feaa2167c4dc6beadf629319423bd4b")
     @GET("search")
-    Call<NearByRestaurantData> getRestaurantData(@HeaderMap Map<String, String> headers);
+    SmartCall<NearByRestaurantData> getRestaurantData(@QueryMap Map<String, String> headers);
 
-
+    @GET("place/autocomplete/json")
+    Call<PlaceSearchData> getPlacePredicationCall(@QueryMap HashMap<String, String> hashMap);
 }

@@ -17,7 +17,7 @@ public class Location {
     private String city;
     @SerializedName("city_id")
     @Expose
-    private Integer cityId;
+    private String cityId;
     @SerializedName("latitude")
     @Expose
     private String latitude;
@@ -29,7 +29,7 @@ public class Location {
     private String zipcode;
     @SerializedName("country_id")
     @Expose
-    private Integer countryId;
+    private String countryId;
     @SerializedName("locality_verbose")
     @Expose
     private String localityVerbose;
@@ -58,11 +58,11 @@ public class Location {
         this.city = city;
     }
 
-    public Integer getCityId() {
+    public String getCityId() {
         return cityId;
     }
 
-    public void setCityId(Integer cityId) {
+    public void setCityId(String cityId) {
         this.cityId = cityId;
     }
 
@@ -90,11 +90,11 @@ public class Location {
         this.zipcode = zipcode;
     }
 
-    public Integer getCountryId() {
+    public String getCountryId() {
         return countryId;
     }
 
-    public void setCountryId(Integer countryId) {
+    public void setCountryId(String countryId) {
         this.countryId = countryId;
     }
 
@@ -105,5 +105,4 @@ public class Location {
     public void setLocalityVerbose(String localityVerbose) {
         this.localityVerbose = localityVerbose;
     }
-
 }

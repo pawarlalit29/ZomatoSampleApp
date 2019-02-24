@@ -7,7 +7,7 @@ import com.google.gson.annotations.SerializedName;
 
 public class Restaurant_ {
 
-    @SerializedName("R_Data")
+    @SerializedName("R")
     @Expose
     private R_Data r;
     @SerializedName("apikey")
@@ -27,16 +27,16 @@ public class Restaurant_ {
     private Location location;
     @SerializedName("switch_to_order_menu")
     @Expose
-    private Integer switchToOrderMenu;
+    private String switchToOrderMenu;
     @SerializedName("cuisines")
     @Expose
     private String cuisines;
     @SerializedName("average_cost_for_two")
     @Expose
-    private Integer averageCostForTwo;
+    private String averageCostForTwo;
     @SerializedName("price_range")
     @Expose
-    private Integer priceRange;
+    private String priceRange;
     @SerializedName("currency")
     @Expose
     private String currency;
@@ -48,16 +48,16 @@ public class Restaurant_ {
     private List<ZomatoEvent> zomatoEvents = null;
     @SerializedName("opentable_support")
     @Expose
-    private Integer opentableSupport;
+    private String opentableSupport;
     @SerializedName("is_zomato_book_res")
     @Expose
-    private Integer isZomatoBookRes;
+    private String isZomatoBookRes;
     @SerializedName("mezzo_provider")
     @Expose
     private String mezzoProvider;
     @SerializedName("is_book_form_web_view")
     @Expose
-    private Integer isBookFormWebView;
+    private String isBookFormWebView;
     @SerializedName("book_form_web_view_url")
     @Expose
     private String bookFormWebViewUrl;
@@ -81,13 +81,13 @@ public class Restaurant_ {
     private String featuredImage;
     @SerializedName("medio_provider")
     @Expose
-    private Integer medioProvider;
+    private String medioProvider;
     @SerializedName("has_online_delivery")
     @Expose
-    private Integer hasOnlineDelivery;
+    private String hasOnlineDelivery;
     @SerializedName("is_delivering_now")
     @Expose
-    private Integer isDeliveringNow;
+    private String isDeliveringNow;
     @SerializedName("include_bogo_offers")
     @Expose
     private Boolean includeBogoOffers;
@@ -96,10 +96,10 @@ public class Restaurant_ {
     private String deeplink;
     @SerializedName("is_table_reservation_supported")
     @Expose
-    private Integer isTableReservationSupported;
+    private String isTableReservationSupported;
     @SerializedName("has_table_booking")
     @Expose
-    private Integer hasTableBooking;
+    private String hasTableBooking;
     @SerializedName("events_url")
     @Expose
     private String eventsUrl;
@@ -155,11 +155,11 @@ public class Restaurant_ {
         this.location = location;
     }
 
-    public Integer getSwitchToOrderMenu() {
+    public String getSwitchToOrderMenu() {
         return switchToOrderMenu;
     }
 
-    public void setSwitchToOrderMenu(Integer switchToOrderMenu) {
+    public void setSwitchToOrderMenu(String switchToOrderMenu) {
         this.switchToOrderMenu = switchToOrderMenu;
     }
 
@@ -171,19 +171,19 @@ public class Restaurant_ {
         this.cuisines = cuisines;
     }
 
-    public Integer getAverageCostForTwo() {
+    public String getAverageCostForTwo() {
         return averageCostForTwo;
     }
 
-    public void setAverageCostForTwo(Integer averageCostForTwo) {
+    public void setAverageCostForTwo(String averageCostForTwo) {
         this.averageCostForTwo = averageCostForTwo;
     }
 
-    public Integer getPriceRange() {
+    public String getPriceRange() {
         return priceRange;
     }
 
-    public void setPriceRange(Integer priceRange) {
+    public void setPriceRange(String priceRange) {
         this.priceRange = priceRange;
     }
 
@@ -211,19 +211,19 @@ public class Restaurant_ {
         this.zomatoEvents = zomatoEvents;
     }
 
-    public Integer getOpentableSupport() {
+    public String getOpentableSupport() {
         return opentableSupport;
     }
 
-    public void setOpentableSupport(Integer opentableSupport) {
+    public void setOpentableSupport(String opentableSupport) {
         this.opentableSupport = opentableSupport;
     }
 
-    public Integer getIsZomatoBookRes() {
+    public String getIsZomatoBookRes() {
         return isZomatoBookRes;
     }
 
-    public void setIsZomatoBookRes(Integer isZomatoBookRes) {
+    public void setIsZomatoBookRes(String isZomatoBookRes) {
         this.isZomatoBookRes = isZomatoBookRes;
     }
 
@@ -235,11 +235,11 @@ public class Restaurant_ {
         this.mezzoProvider = mezzoProvider;
     }
 
-    public Integer getIsBookFormWebView() {
+    public String getIsBookFormWebView() {
         return isBookFormWebView;
     }
 
-    public void setIsBookFormWebView(Integer isBookFormWebView) {
+    public void setIsBookFormWebView(String isBookFormWebView) {
         this.isBookFormWebView = isBookFormWebView;
     }
 
@@ -299,27 +299,27 @@ public class Restaurant_ {
         this.featuredImage = featuredImage;
     }
 
-    public Integer getMedioProvider() {
+    public String getMedioProvider() {
         return medioProvider;
     }
 
-    public void setMedioProvider(Integer medioProvider) {
+    public void setMedioProvider(String medioProvider) {
         this.medioProvider = medioProvider;
     }
 
-    public Integer getHasOnlineDelivery() {
+    public String getHasOnlineDelivery() {
         return hasOnlineDelivery;
     }
 
-    public void setHasOnlineDelivery(Integer hasOnlineDelivery) {
+    public void setHasOnlineDelivery(String hasOnlineDelivery) {
         this.hasOnlineDelivery = hasOnlineDelivery;
     }
 
-    public Integer getIsDeliveringNow() {
+    public String getIsDeliveringNow() {
         return isDeliveringNow;
     }
 
-    public void setIsDeliveringNow(Integer isDeliveringNow) {
+    public void setIsDeliveringNow(String isDeliveringNow) {
         this.isDeliveringNow = isDeliveringNow;
     }
 
@@ -339,19 +339,19 @@ public class Restaurant_ {
         this.deeplink = deeplink;
     }
 
-    public Integer getIsTableReservationSupported() {
+    public String getIsTableReservationSupported() {
         return isTableReservationSupported;
     }
 
-    public void setIsTableReservationSupported(Integer isTableReservationSupported) {
+    public void setIsTableReservationSupported(String isTableReservationSupported) {
         this.isTableReservationSupported = isTableReservationSupported;
     }
 
-    public Integer getHasTableBooking() {
+    public String getHasTableBooking() {
         return hasTableBooking;
     }
 
-    public void setHasTableBooking(Integer hasTableBooking) {
+    public void setHasTableBooking(String hasTableBooking) {
         this.hasTableBooking = hasTableBooking;
     }
 
@@ -370,5 +370,4 @@ public class Restaurant_ {
     public void setEstablishmentTypes(List<Object> establishmentTypes) {
         this.establishmentTypes = establishmentTypes;
     }
-
 }

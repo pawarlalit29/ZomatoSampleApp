@@ -25,4 +25,5 @@
     <dimen name="card_margin_17">17dp</dimen>
     <dimen name="card_margin_18">18dp</dimen>
     <dimen name="card_margin_side">5dp</dimen>
+    <dimen name="edittext_margin_side">20dp</dimen>
 </resources>

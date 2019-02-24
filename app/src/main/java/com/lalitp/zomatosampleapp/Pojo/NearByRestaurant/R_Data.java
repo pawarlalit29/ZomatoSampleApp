@@ -8,13 +8,13 @@ public class R_Data {
 
     @SerializedName("res_id")
     @Expose
-    private Integer resId;
+    private String resId;
 
-    public Integer getResId() {
+    public String getResId() {
         return resId;
     }
 
-    public void setResId(Integer resId) {
+    public void setResId(String resId) {
         this.resId = resId;
     }
 

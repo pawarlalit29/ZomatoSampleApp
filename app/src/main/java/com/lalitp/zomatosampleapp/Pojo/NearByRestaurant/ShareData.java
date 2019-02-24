@@ -8,13 +8,13 @@ public class ShareData {
 
     @SerializedName("should_show")
     @Expose
-    private Integer shouldShow;
+    private String shouldShow;
 
-    public Integer getShouldShow() {
+    public String getShouldShow() {
         return shouldShow;
     }
 
-    public void setShouldShow(Integer shouldShow) {
+    public void setShouldShow(String shouldShow) {
         this.shouldShow = shouldShow;
     }
 

@@ -26,10 +26,11 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:layout_marginLeft="16dp"
-            android:layout_marginRight="16dp"
             android:layout_marginTop="20dp"
+            android:layout_marginRight="16dp"
             android:textSize="15sp"
             android:textStyle="bold"
+            android:visibility="gone"
             tools:text="@string/progressActivityEmptyTitlePlaceholder" />
 
         <TextView
@@ -37,10 +38,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:layout_marginBottom="16dp"
             android:layout_marginLeft="56dp"
-            android:layout_marginRight="56dp"
             android:layout_marginTop="10dp"
+            android:layout_marginRight="56dp"
+            android:layout_marginBottom="16dp"
             android:gravity="center"
             android:lineSpacingExtra="5.5dp"
             tools:text="@string/progressActivityEmptyContentPlaceholder" />
@@ -50,7 +51,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:text="@string/progressActivityErrorButton" />
+            android:background="@color/transparent"
+            android:text="@string/progressActivityErrorButton"
+            android:textColor="@color/colorAccent" />
 
     </LinearLayout>
 

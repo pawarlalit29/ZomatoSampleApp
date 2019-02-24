@@ -7,4 +7,6 @@ public class AppConstant {
     public static final String FROM_ONREFRESH = "onrefresh";
     public static final String FROM_ONRESUME = "onresume";
     public static final String FROM_ONLODEMORE = "onloadmore";
+    public final static String no_restaurant_found = "We couldn't found any restaurant in your city" ;
+    public final static String no_more_restaurant_found = "No more restaurant found in your city" ;
 }
