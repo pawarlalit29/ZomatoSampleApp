@@ -65,7 +65,7 @@ public class MainActivity extends AppCompatActivity {
             securePreferences.put(AppConstant.store_location, strLocation);
         }
 
-        popBackStack();
+        setFrameLayout(RestaurantFragment.getInstance());
 
     }
 

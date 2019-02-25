@@ -44,6 +44,7 @@ import com.lalitp.zomatosampleapp.Pojo.PlaceSearch.Prediction;
 import com.lalitp.zomatosampleapp.R;
 import com.lalitp.zomatosampleapp.UserInterface.Activity.MainActivity;
 import com.lalitp.zomatosampleapp.UserInterface.Adaptor.PlaceAutoCompleteAdapter;
+import com.lalitp.zomatosampleapp.UserInterface.Widget.CustomPermissionManage.CustomFragManagePermission;
 import com.lalitp.zomatosampleapp.Utils.AppConstant;
 import com.lalitp.zomatosampleapp.Utils.Common_Utils;
 
@@ -59,7 +60,7 @@ import permission.auron.com.marshmallowpermissionhelper.FragmentManagePermission
 import permission.auron.com.marshmallowpermissionhelper.PermissionResult;
 import permission.auron.com.marshmallowpermissionhelper.PermissionUtils;
 
-public class PlaceSearchFragment extends FragmentManagePermission implements GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener, PlaceSearchView, PlaceAutoCompleteAdapter.ItemClickListner {
+public class PlaceSearchFragment extends CustomFragManagePermission implements GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener, PlaceSearchView, PlaceAutoCompleteAdapter.ItemClickListner {
 
 
     @BindView(R.id.et_search_place)
