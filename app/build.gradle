@@ -9,6 +9,7 @@ android {
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        multiDexEnabled true
     }
     buildTypes {
         release {
@@ -36,19 +37,19 @@ dependencies {
     implementation 'com.android.support:multidex:1.0.3'
 
     // for network call
-    implementation 'com.squareup.retrofit2:retrofit:2.1.0'
+    implementation 'com.squareup.retrofit2:retrofit:2.3.0'
     implementation 'com.squareup.retrofit2:converter-gson:2.3.0'
     implementation 'com.squareup.retrofit2:converter-scalars:2.1.0'
     // for show log when we hit the api call
     implementation 'com.squareup.okhttp3:logging-interceptor:3.4.1'
-    implementation 'com.squareup.okhttp3:okhttp:3.4.1'
+    implementation 'com.squareup.okhttp3:okhttp:3.10.0'
     implementation 'com.jakewharton:butterknife:8.8.1'
     annotationProcessor 'com.jakewharton:butterknife-compiler:8.8.1'
     // for fetch image from network
     implementation 'com.squareup.picasso:picasso:2.71828'
     implementation 'com.jakewharton:disklrucache:2.0.2'
-    implementation 'com.google.guava:guava:18.0'
     implementation 'com.github.dimitrovskif:SmartCache:0.2'
     implementation 'com.google.android.gms:play-services:12.0.1'
+    // for app permission
     implementation 'com.auron:permission-manage:1.1.7'
 }

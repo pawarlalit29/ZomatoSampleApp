@@ -1,13 +1,11 @@
 package com.lalitp.zomatosampleapp.UserInterface.Activity;
 
-import android.content.Context;
-import android.content.SharedPreferences;
+import android.os.Bundle;
 import android.os.Handler;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.widget.FrameLayout;
 
 import com.google.gson.Gson;
@@ -41,10 +39,9 @@ public class MainActivity extends AppCompatActivity {
 
     public void setFrameLayout(Fragment fragment) {
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-        transaction.setCustomAnimations(R.anim.enter_from_right, R.anim.exit_to_left, R.anim.enter_from_left, R.anim.exit_to_right);
+        //transaction.setCustomAnimations(R.anim.enter_from_right, R.anim.exit_to_left, R.anim.enter_from_left, R.anim.exit_to_right);
         transaction.replace(R.id.contentContainer, fragment);
-        transaction.addToBackStack(fragment.getClass().getName());
-        transaction.commit();
+        transaction.commitAllowingStateLoss();
     }
 
     public Location getStoreLocation() {
@@ -82,10 +79,12 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        super.onBackPressed();
-        int count = getSupportFragmentManager().getBackStackEntryCount();
-        if (count == 1)
-            appExit();
+        FragmentManager frag_manager = getSupportFragmentManager();
+        if (frag_manager.getBackStackEntryCount() > 0) {
+            frag_manager.popBackStack();
+        } else {
+            backToMainScreen();
+        }
     }
 
     private void appExit() {
@@ -95,7 +94,7 @@ public class MainActivity extends AppCompatActivity {
         }
 
         this.doubleBackToExitPressedOnce = true;
-        Common_Utils.showToast("Please click BACK again to exit");
+        Common_Utils.showToast(AppConstant.app_exit_message);
 
         new Handler().postDelayed(new Runnable() {
 
@@ -104,5 +103,36 @@ public class MainActivity extends AppCompatActivity {
                 doubleBackToExitPressedOnce = false;
             }
         }, 2000);
+    }
+
+    private void backToMainScreen() {
+        if (getValidFragScreen(RestaurantFragment.getInstance())) {
+            setFrameLayout(RestaurantFragment.getInstance());
+        } else {
+            appExit();
+        }
+
+    }
+
+    public boolean getValidFragScreen(Fragment fragment) {
+
+        FragmentManager frag_manager = getSupportFragmentManager();
+        if (frag_manager.getBackStackEntryCount() != 0) {
+            frag_manager.popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE);
+        }
+
+        Fragment fragment1 = frag_manager.findFragmentById(R.id.contentContainer);
+
+        if (fragment1 == null)
+            return false;
+
+        String strFragmentName = fragment.getClass().getSimpleName();
+
+        if (!strFragmentName
+                .equalsIgnoreCase(fragment1.getClass().getSimpleName())) {
+            return true;
+        } else {
+            return false;
+        }
     }
 }
